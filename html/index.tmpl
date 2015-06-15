@@ -1,0 +1,61 @@
+<html>
+	<head>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		    <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+			<li class="active"><a href="#">Routes<span class="sr-only">(current)</span></a></li>
+			<li><a href="#">Looking Glass</a></li>
+		      </ul>
+		     </div>  
+		</nav>
+		<div class="jumbotron">
+		  <div class="container">
+		  <h1>Hello, world!</h1>
+		     <p>route is a handy tool to display static routes that are inplace, including where they go and how they get there!</p>
+			<div class="alert alert-warning">
+        			<a href="#" class="close" data-dismiss="alert">&times;</a>
+        			<strong>To Do:</strong><br>
+				<ul>
+				 <li> add a configuration front-end utility</li>
+				 <li> add a looking-glass type utility to show and confirm routes</li>
+				</ul>
+    			</div>
+		</div>
+		</div>
+		<br>
+		<div class="container">
+		<table class="table table-striped">
+		      <thead>
+			<tr>
+			  <th>Provider</th>
+			  <th>Route</th>
+			  <th>Via</th>
+			  <th>Next Hop</th>
+			</tr>
+		      </thead>
+		      <tbody>
+			{% for key in routes %}
+			<tr>
+				{% if (key[1][0] == 'next-hop' and key[1][1] == '192.168.0.248'): %} 
+				<th scope="row"><img src="https://s3-ap-southeast-2.amazonaws.com/mmcallister/img/iinet.png"</img></th>
+				{% elif (key[1][0] == 'next-hop'): %}
+				<th scope="row"><img src="https://s3-ap-southeast-2.amazonaws.com/mmcallister/img/TPG.jpg"</img></th>
+				{% endif %}
+				<td>{{ key[2][1] }}</td>
+				<td>{{ key[0][1] }}</td>
+				<td>{{ key[1][1] }}</td>
+			</tr>
+			{% endfor %}
+		     </tbody>
+		    </table>
+		</div>
+	</body>
+</html>
